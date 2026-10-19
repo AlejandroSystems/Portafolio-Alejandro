@@ -1,380 +1,160 @@
-/* =========================================================
-   PORTAFOLIO ALEJANDRO ZÚÑIGA
-   script.js
-========================================================= */
+/*
+ * PORTAFOLIO ALEJANDRO ZÚÑIGA
+ * script.js — navegación, accesibilidad y animaciones.
+ * No requiere bibliotecas externas ni una etapa de compilación.
+ */
+
+// Con JS deshabilitado el contenido debe seguir siendo visible.
+document.documentElement.classList.add("js");
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       1. ELEMENTOS DEL DOM
-    ====================================================== */
-
     const header = document.querySelector(".header");
-
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
-
-    const navLinks = document.querySelectorAll(".nav-link");
-
+    const navLinks = [...document.querySelectorAll(".nav-link")];
     const scrollTopButton = document.getElementById("scroll-top");
-
     const currentYear = document.getElementById("current-year");
-
-
-    /* =====================================================
-       2. MENÚ RESPONSIVE
-    ====================================================== */
-
-    const openMenu = () => {
-
-        navMenu.classList.add("open");
-        menuToggle.classList.add("active");
-
-        document.body.classList.add("menu-open");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-    };
-
-
-    const closeMenu = () => {
-
-        navMenu.classList.remove("open");
-        menuToggle.classList.remove("active");
-
-        document.body.classList.remove("menu-open");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-    };
-
-
-    menuToggle.addEventListener("click", () => {
-
-        const menuIsOpen =
-            navMenu.classList.contains("open");
-
-        if (menuIsOpen) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-
-    });
-
-
-    /* =====================================================
-       3. CERRAR MENÚ AL SELECCIONAR UNA OPCIÓN
-    ====================================================== */
-
-    navLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-            closeMenu();
-        });
-
-    });
-
-
-    /* =====================================================
-       4. CERRAR MENÚ CON ESC
-    ====================================================== */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key === "Escape") {
-            closeMenu();
-        }
-
-    });
-
-
-    /* =====================================================
-       5. CERRAR MENÚ SI VOLVEMOS A DESKTOP
-    ====================================================== */
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth > 850) {
-            closeMenu();
-        }
-
-    });
-
-
-    /* =====================================================
-       6. HEADER AL HACER SCROLL
-    ====================================================== */
-
-    const updateHeader = () => {
-
-        if (window.scrollY > 20) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
-
-    };
-
-
-    /* =====================================================
-       7. BOTÓN VOLVER ARRIBA
-    ====================================================== */
-
-    const updateScrollButton = () => {
-
-        if (window.scrollY > 500) {
-
-            scrollTopButton.classList.add("visible");
-
-        } else {
-
-            scrollTopButton.classList.remove("visible");
-
-        }
-
-    };
-
-
-    scrollTopButton.addEventListener("click", () => {
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
-
-
-    /* =====================================================
-       8. NAVEGACIÓN ACTIVA
-    ====================================================== */
-
-    const updateActiveNavigation = () => {
-
-        const scrollPosition =
-            window.scrollY + 180;
-
-        let currentSection = "inicio";
-
-
-        navLinks.forEach((link) => {
-
-            const href =
-                link.getAttribute("href");
-
-            if (
-                !href ||
-                !href.startsWith("#")
-            ) {
-                return;
-            }
-
-
-            const section =
-                document.querySelector(href);
-
-            if (!section) {
-                return;
-            }
-
-
-            if (
-                scrollPosition >=
-                section.offsetTop
-            ) {
-                currentSection =
-                    section.id;
-            }
-
-        });
-
-
-        /*
-        Si estamos prácticamente arriba,
-        siempre marcamos Inicio.
-        */
-
-        if (window.scrollY < 350) {
-            currentSection = "inicio";
-        }
-
-
-        navLinks.forEach((link) => {
-
-            link.classList.remove("active");
-
-            if (
-                link.getAttribute("href") ===
-                `#${currentSection}`
-            ) {
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-    };
-
-
-    /* =====================================================
-       9. AÑO AUTOMÁTICO DEL FOOTER
-    ====================================================== */
-
-    if (currentYear) {
-
-        currentYear.textContent =
-            new Date().getFullYear();
-
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const scrollBehavior = () => reducedMotion.matches ? "auto" : "smooth";
+
+    // 1. Menú móvil: estado accesible, cierre mediante Escape y clic externo.
+    function setMenuOpen(isOpen, returnFocus = false) {
+        if (!menuToggle || !navMenu) return;
+        navMenu.classList.toggle("open", isOpen);
+        menuToggle.classList.toggle("active", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+        if (returnFocus) menuToggle.focus();
     }
 
-
-    /* =====================================================
-       10. SCROLL PRINCIPAL
-    ====================================================== */
-
-    const handleScroll = () => {
-
-        updateHeader();
-
-        updateScrollButton();
-
-        updateActiveNavigation();
-
-    };
-
-
-    window.addEventListener(
-        "scroll",
-        handleScroll,
-        {
-            passive: true
-        }
-    );
-
-
-    /*
-    Ejecutamos una vez al cargar
-    por si la página inicia desplazada.
-    */
-
-    handleScroll();
-
-
-    /* =====================================================
-       11. SCROLL SUAVE EN ENLACES INTERNOS
-    ====================================================== */
-
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach((anchor) => {
-
-            anchor.addEventListener(
-                "click",
-                function (event) {
-
-                    const destination =
-                        this.getAttribute("href");
-
-                    if (
-                        destination === "#" ||
-                        !destination
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            destination
-                        );
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    const headerHeight =
-                        header.offsetHeight;
-
-                    const targetPosition =
-                        target.offsetTop -
-                        headerHeight -
-                        20;
-
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth"
-                    });
-
-                }
-            );
-
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+            setMenuOpen(!navMenu.classList.contains("open"));
         });
-/* =====================================================
-   ANIMACIONES AL HACER SCROLL
-====================================================== */
+        navLinks.forEach(link => link.addEventListener("click", () => setMenuOpen(false)));
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && navMenu.classList.contains("open")) {
+                setMenuOpen(false, true);
+            }
+        });
+        document.addEventListener("click", event => {
+            if (navMenu.classList.contains("open") &&
+                !navMenu.contains(event.target) &&
+                !menuToggle.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        });
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 850 && navMenu.classList.contains("open")) {
+                setMenuOpen(false);
+            }
+        });
+    }
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+    // 2. Menú activo según la sección que aparece en pantalla.
+    const sections = navLinks.map(link => {
+        const href = link.getAttribute("href");
+        if (!href || !href.startsWith("#") || href === "#") return null;
+        const element = document.getElementById(href.slice(1));
+        return element ? { link, element } : null;
+    }).filter(Boolean);
 
-
-const revealObserver =
-    new IntersectionObserver(
-        (entries, observer) => {
-
-            entries.forEach((entry) => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add(
-                        "visible"
-                    );
-
-                    observer.unobserve(
-                        entry.target
-                    );
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.15
+    function updateActiveNavigation() {
+        const scrollPosition = window.scrollY + (header?.offsetHeight ?? 76) + 105;
+        let currentId = "inicio";
+        for (const { element } of sections) {
+            if (scrollPosition >= element.getBoundingClientRect().top + window.scrollY) {
+                currentId = element.id;
+            }
         }
-    );
+        if (window.scrollY < 180) currentId = "inicio";
+        for (const link of navLinks) {
+            const isActive = link.getAttribute("href") === `#${currentId}`;
+            link.classList.toggle("active", isActive);
+            if (isActive) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+        }
+    }
 
+    // 3. Eventos de desplazamiento agrupados por fotograma.
+    function updateOnScroll() {
+        header?.classList.toggle("scrolled", window.scrollY > 20);
+        scrollTopButton?.classList.toggle("visible", window.scrollY > 500);
+        updateActiveNavigation();
+    }
+    let framePending = false;
+    window.addEventListener("scroll", () => {
+        if (framePending) return;
+        framePending = true;
+        window.requestAnimationFrame(() => {
+            updateOnScroll();
+            framePending = false;
+        });
+    }, { passive: true });
+    updateOnScroll();
 
-revealElements.forEach((element) => {
+    // 4. Volver arriba, respetando el ajuste de movimiento reducido.
+    scrollTopButton?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: scrollBehavior() });
+    });
 
-    revealObserver.observe(element);
+    // 5. Enlaces internos: tener en cuenta el encabezado fijo.
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", event => {
+            const href = anchor.getAttribute("href");
+            if (!href || href === "#") return;
+            const target = document.getElementById(href.slice(1));
+            if (!target) return;
+            event.preventDefault();
+            const top = target.getBoundingClientRect().top + window.scrollY -
+                        (header?.offsetHeight ?? 0) - 20;
+            window.scrollTo({ top: Math.max(0, top), behavior: scrollBehavior() });
+            // Conservar un enlace profundo navegable y un historial útil.
+            if (window.location.hash !== href) {
+                window.history.pushState(null, "", href);
+            }
+            // Devolver el foco al contenido cuando se cierra el menú móvil.
+            if (anchor.closest("#nav-menu") && target !== header) {
+                const hadTabindex = target.hasAttribute("tabindex");
+                if (!hadTabindex) target.setAttribute("tabindex", "-1");
+                target.focus({ preventScroll: true });
+                if (!hadTabindex) target.addEventListener("blur", () => {
+                    target.removeAttribute("tabindex");
+                }, { once: true });
+            }
+        });
+    });
 
-});
+    // 6. Revelar contenido; mantenerlo visible si no hay observador o si
+    //    se ha pedido reducir el movimiento.
+    const revealElements = document.querySelectorAll(".reveal");
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+        revealElements.forEach(element => element.classList.add("visible"));
+    } else {
+        const observer = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                currentObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(element => observer.observe(element));
+    }
 
-    /* =====================================================
-       12. MENSAJE DE DESARROLLO
-    ====================================================== */
-
-    console.log(
-        "%c<AZ/> Portafolio cargado correctamente",
-        `
-        color: #38bdf8;
-        font-size: 16px;
-        font-weight: bold;
-        `
-    );
-
+    // 7. Año actual y cambios de historial (Atrás/Adelante).
+    if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+    window.addEventListener("popstate", () => {
+        const id = window.location.hash.slice(1);
+        if (!id) {
+            window.scrollTo({ top: 0, behavior: scrollBehavior() });
+        } else {
+            const element = document.getElementById(id);
+            if (element) {
+                const top = element.getBoundingClientRect().top + window.scrollY -
+                            (header?.offsetHeight ?? 0) - 20;
+                window.scrollTo({ top: Math.max(0, top), behavior: scrollBehavior() });
+            }
+        }
+    });
 });
