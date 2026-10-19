@@ -1950,3 +1950,68 @@ button:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================================
+   26. MEJORAS DE ACCESIBILIDAD Y CONTINUIDAD
+========================================================= */
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1200;
+    padding: 11px 17px;
+    border-radius: var(--radius-small);
+    color: #06101a;
+    background: var(--primary);
+    font-weight: 700;
+    transform: translateY(-180%);
+}
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* Si no se ejecuta JavaScript, todo el contenido sigue visible. */
+.reveal {
+    opacity: 1;
+    transform: none;
+}
+.js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+.js .reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Los elementos del menú cerrado no deben recibir el foco. */
+@media (max-width: 850px) {
+    .nav-menu {
+        visibility: hidden;
+        pointer-events: none;
+        transition: right 0.35s ease, visibility 0.35s;
+    }
+    .nav-menu.open {
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Evitar solapamiento entre la marca y los siete enlaces en tablet. */
+@media (min-width: 851px) and (max-width: 1050px) {
+    .nav-menu { gap: 16px; }
+    .nav-link { font-size: 0.84rem; }
+    .nav-contact { padding: 8px 12px; }
+}
+
+/* El halo decorativo no debe crear desplazamiento horizontal en móvil. */
+@media (max-width: 650px) {
+    .hero-card::before { inset: -10px; }
+}
