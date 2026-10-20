@@ -2177,3 +2177,148 @@ button:focus-visible {
 @media (max-width: 380px) {
     .cert-topline .cert-year { flex-basis: 100%; margin-left: 0; }
 }
+
+
+/* =========================================================
+   22. PERFIL PROFESIONAL CON FOTOGRAFÍA / DATOS DE CONTACTO
+   La imagen usa assets/ y funciona en GitHub Pages y Azure.
+========================================================= */
+.profile-card {
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-large);
+    background: linear-gradient(150deg, rgba(21,30,47,.98), rgba(8,14,26,.99));
+    box-shadow: var(--shadow);
+}
+.profile-card-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+}
+.profile-photo-wrap {
+    width: 132px;
+    height: 153px;
+    border-radius: 14px;
+    overflow: hidden;
+    flex: 0 0 auto;
+    background: #edf3f8;
+    border: 1px solid rgba(255,255,255,.2);
+}
+.profile-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+}
+.profile-identity { min-width: 0; }
+.profile-label,
+.education-language-label {
+    display: block;
+    color: var(--primary);
+    font: 700 .67rem/1.4 Consolas, monospace;
+    letter-spacing: .09em;
+    margin-bottom: 7px;
+}
+.profile-identity h3 {
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+.profile-identity p {
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: .85rem;
+}
+.profile-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    padding: 6px 10px;
+    border-radius: 99px;
+    color: #86efac;
+    background: rgba(34,197,94,.08);
+    border: 1px solid rgba(34,197,94,.22);
+    font-size: .71rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.profile-meta {
+    margin-top: 22px;
+    padding: 17px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    gap: 11px;
+}
+.profile-meta div {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 8px;
+    align-items: baseline;
+}
+.profile-meta dt { color: var(--text-muted); font-size: .79rem; }
+.profile-meta dd { margin: 0; font-size: .88rem; font-weight: 700; overflow-wrap: anywhere; }
+.profile-meta a { color: var(--primary-light); text-underline-offset: 3px; }
+.profile-meta a:hover, .profile-meta a:focus-visible { text-decoration: underline; }
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    padding-top: 14px;
+    font-size: .83rem;
+    font-weight: 700;
+}
+.profile-actions a { color: var(--primary-light); }
+.profile-actions a:hover, .profile-actions a:focus-visible { text-decoration: underline; }
+.profile-terminal {
+    margin: 18px -24px -24px;
+    padding: 10px 24px;
+    background: #060a13;
+    color: #95a8bb;
+    font: .79rem/1.5 Consolas, monospace;
+    border-top: 1px solid var(--border);
+}
+.profile-terminal > span:first-child { color: var(--primary); }
+.terminal-cursor-inline { color: #86efac; }
+.education-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+.education-language {
+    min-width: 205px;
+    padding: 16px 18px;
+    border-radius: 15px;
+    border: 1px solid var(--border-primary);
+    background: rgba(7,11,20,.45);
+    text-align: left;
+}
+.education-language strong { display: block; line-height: 1.4; }
+.education-language small { display: block; color: var(--text-secondary); margin-top: 4px; font-size: .73rem; }
+.education-side .education-code { font-size: 1.8rem; }
+.contact .contact-phone { margin-top: 7px; font-size: 1rem; color: var(--text-secondary); }
+.contact-phone a { color: var(--primary-light); text-decoration: underline; text-underline-offset: 3px; font-weight: 750; }
+.contact-location strong { color: #86efac; font-weight: 700; }
+@media (max-width: 650px) {
+    .profile-card { padding: 18px; }
+    .profile-card-head { gap: 13px; }
+    .profile-photo-wrap { width: 110px; height: 138px; }
+    .profile-identity h3 { font-size: 1.2rem; }
+    .profile-identity p { font-size: .76rem; }
+    .profile-status { font-size: .68rem; padding: 5px 8px; margin-top: 9px; }
+    .profile-terminal { margin: 18px -18px -18px; padding: 10px 18px; font-size: .73rem; }
+    .education-side { align-items: flex-start; }
+    .education-language { min-width: 0; width: 100%; }
+}
+@media (max-width: 360px) {
+    .profile-photo-wrap { width: 97px; height: 129px; }
+    .profile-card-head { gap: 10px; }
+    .profile-status { white-space: normal; }
+}
