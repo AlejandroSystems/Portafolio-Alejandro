@@ -2322,3 +2322,21 @@ button:focus-visible {
     .profile-card-head { gap: 10px; }
     .profile-status { white-space: normal; }
 }
+
+/* Botón público CV: PDF dentro del repositorio; funciona local y en Azure. */
+.btn-cv {
+    background: rgba(56, 189, 248, 0.10);
+    border: 1px solid rgba(56, 189, 248, 0.65);
+    color: var(--primary-light);
+    gap: 0.55rem;
+}
+.btn-cv:hover {
+    background: rgba(56, 189, 248, 0.19);
+    border-color: var(--primary-light);
+    color: var(--text-primary);
+    transform: translateY(-3px);
+}
+.btn-cv:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 3px;
+}
