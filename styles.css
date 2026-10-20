@@ -2015,3 +2015,165 @@ button:focus-visible {
 @media (max-width: 650px) {
     .hero-card::before { inset: -10px; }
 }
+
+
+/* =========================================================
+   25. CREDENCIALES VERIFICABLES Y CONTACTO PROFESIONAL
+   Estilos añadidos sin cambiar la identidad visual original
+========================================================= */
+.btn-linkedin {
+    background: rgba(10, 102, 194, 0.13);
+    border: 1px solid rgba(96, 165, 250, 0.45);
+    color: #bfdbfe;
+}
+.btn-linkedin:hover {
+    background: rgba(10, 102, 194, 0.24);
+    color: #eff6ff;
+    transform: translateY(-3px);
+}
+.certifications-intro {
+    max-width: 820px;
+    margin: -18px 0 32px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.credentials-heading {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+}
+.credentials-heading-spaced {
+    margin-top: 38px;
+}
+.certifications-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 8px;
+}
+.cert-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+.cert-provider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68px;
+    min-height: 37px;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+.cert-provider-aws {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.18);
+}
+.cert-provider-cisco {
+    color: #67e8f9;
+    background: rgba(103, 232, 249, 0.07);
+    border: 1px solid rgba(103, 232, 249, 0.18);
+}
+.cert-provider-microsoft {
+    color: #c4b5fd;
+    background: rgba(196, 181, 253, 0.08);
+    border: 1px solid rgba(196, 181, 253, 0.2);
+}
+.cert-topline .cert-year {
+    margin: 0;
+    color: var(--text-muted);
+}
+.cert-card h4 {
+    font-size: 1.16rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+.cert-card .cert-type {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 5px;
+    padding: 4px 9px;
+    font-size: 0.73rem;
+    color: var(--primary-light);
+    border: 1px solid var(--border-primary);
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.06);
+}
+.cert-link {
+    display: inline-flex;
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 20px;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-underline-offset: 4px;
+}
+.cert-link:hover, .cert-link:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+}
+.credentials-other {
+    color: var(--text-muted);
+    margin-top: 28px;
+    font-size: 0.87rem;
+}
+.contact .contact-location {
+    color: var(--text-secondary);
+    margin-top: 12px;
+    font-size: 0.89rem;
+}
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.82rem;
+    color: var(--primary-light);
+}
+.footer-social a:hover, .footer-social a:focus-visible {
+    text-decoration: underline;
+    color: #fff;
+}
+@media (max-width: 650px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+    .certifications-intro {
+        margin-top: 0;
+    }
+    .cert-card {
+        padding: 24px;
+    }
+}
+
+/* Insignias proporcionadas por el titular, extraídas de su captura de Credly. */
+.cert-badge {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    object-fit: contain;
+    padding: 5px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.13);
+}
+.cert-topline {
+    justify-content: flex-start;
+    align-items: center;
+}
+.cert-topline .cert-year {
+    margin-left: auto;
+}
+@media (max-width: 380px) {
+    .cert-topline .cert-year { flex-basis: 100%; margin-left: 0; }
+}
