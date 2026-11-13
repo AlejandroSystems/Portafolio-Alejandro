@@ -2,20 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alejandro Zúñiga: automatización con Python, soporte TI, modelado de datos con Power BI y DAX, desarrollo web y proyectos de ingeniería de sistemas.">
+    <title>Alejandro Zúñiga | Automatización, Datos y Soporte TI</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Portafolio profesional de Alejandro Zúñiga: soporte TI, automatización con Python, Power BI, GPS/CCTV y proyectos de ingeniería de sistemas. Disponible para incorporación inmediata."
-    >
-
-    <title>Alejandro Zúñiga | Soporte TI · Automatización · Datos</title>
-
-    <meta name="theme-color" content="#070b14">
+    <!-- Tema actualizado a color claro -->
+    <meta name="theme-color" content="#F8FAFC">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alejandro Zúñiga | Portafolio profesional">
+    <meta property="og:description" content="Automatización con Python, modelado de datos en Power BI, soporte TI y desarrollo web.">
     <link rel="preload" as="image" href="assets/alejandro-perfil.jpg">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,243 +19,141 @@
 
     <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
-    <!-- =========================
-         HEADER / NAVEGACIÓN
-    ========================== -->
-    <header class="header" id="inicio">
+    <!-- Iconos SVG reutilizables: sin librerías externas. -->
+    <svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="nav-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+        <symbol id="nav-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></symbol>
+        <symbol id="nav-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></symbol>
+        <symbol id="nav-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></symbol>
+        <symbol id="nav-project" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m11 12-2 2 2 2m4-4 2 2-2 2"/></symbol>
+        <symbol id="nav-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8.5 12.4-1 8 4.5-2.5 4.5 2.5-1-8"/></symbol>
+        <symbol id="nav-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+        <symbol id="nav-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.8a3.4 3.4 0 0 0-.9-2.7c3-.35 6.1-1.5 6.1-6.8A5.3 5.3 0 0 0 18.7 5 4.9 4.9 0 0 0 18.6 1.4S17.45 1 15 3a13.8 13.8 0 0 0-7 0C5.55 1 4.4 1.4 4.4 1.4A4.9 4.9 0 0 0 4.3 5 5.3 5.3 0 0 0 2.8 8.7c0 5.3 3.1 6.45 6.1 6.8A3.4 3.4 0 0 0 8 18.2V22"/></symbol>
+        <symbol id="nav-external" viewBox="0 0 24 24"><path d="M13 5h6v6m0-6-9 9"/><path d="M19 14v5H5V5h5"/></symbol>
+        <symbol id="nav-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    </svg>
+    <!-- Sidebar en escritorio; panel desplegable en móviles. -->
+    <header class="header">
         <nav class="navbar container" aria-label="Navegación principal">
-
-            <a href="#inicio" class="logo" aria-label="Ir al inicio">
+            <a href="#inicio" class="logo" aria-label="Ir al inicio del portafolio">
                 <span class="logo-symbol">&lt;AZ/&gt;</span>
+                <span class="brand-subtitle">PORTAFOLIO PROFESIONAL</span>
+                <span class="brand-career">Ingeniería de Sistemas</span>
             </a>
 
-            <button
-                class="menu-toggle"
-                id="menu-toggle"
-                aria-label="Abrir menú"
-                aria-expanded="false"
-                aria-controls="nav-menu"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="menu-toggle" id="menu-toggle" type="button"
+                    aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+                <span></span><span></span><span></span>
             </button>
 
-            <ul class="nav-menu" id="nav-menu">
-                <li>
-                    <a href="#inicio" class="nav-link active">Inicio</a>
-                </li>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links" aria-label="Secciones del portafolio">
+                    <li><a href="#inicio" class="nav-link active" aria-current="location"><svg class="nav-icon" aria-hidden="true"><use href="#nav-home"></use></svg><span>Inicio</span></a></li>
+                    <li><a href="#sobre-mi" class="nav-link"><svg class="nav-icon" aria-hidden="true"><use href="#nav-user"></use></svg><span>Sobre mí</span></a></li>
+                    <li><a href="#experiencia" class="nav-link"><svg class="nav-icon" aria-hidden="true"><use href="#nav-briefcase"></use></svg><span>Experiencia</span></a></li>
+                    <li><a href="#habilidades" class="nav-link"><svg class="nav-icon" aria-hidden="true"><use href="#nav-code"></use></svg><span>Habilidades</span></a></li>
+                    <li><a href="#proyectos" class="nav-link"><svg class="nav-icon" aria-hidden="true"><use href="#nav-project"></use></svg><span>Proyectos</span></a></li>
+                    <li><a href="#certificaciones" class="nav-link"><svg class="nav-icon" aria-hidden="true"><use href="#nav-award"></use></svg><span>Certificaciones</span></a></li>
+                    <li><a href="#contacto" class="nav-link nav-contact"><svg class="nav-icon" aria-hidden="true"><use href="#nav-mail"></use></svg><span>Contacto</span></a></li>
+                </ul>
 
-                <li>
-                    <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-                </li>
+                <div class="sidebar-middle">
+                    <div class="sidebar-skills" aria-label="Tecnologías principales">
+                        <p class="sidebar-heading">TECNOLOGÍAS PRINCIPALES</p>
+                        <div class="sidebar-tags">
+                            <span>Python</span><span>Power BI</span><span>SQL</span><span>Git</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-repositories">
+                        <p class="sidebar-heading">PROYECTOS PUBLICADOS</p>
+                        <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" class="sidebar-repo-link">
+                            <svg class="nav-icon" aria-hidden="true"><use href="#nav-github"></use></svg>
+                            <span>Ver repositorios</span>
+                            <svg class="sidebar-external" aria-hidden="true"><use href="#nav-external"></use></svg>
+                        </a>
+                    </div>
+                </div>
 
-                <li>
-                    <a href="#experiencia" class="nav-link">Experiencia</a>
-                </li>
-
-                <li>
-                    <a href="#habilidades" class="nav-link">Habilidades</a>
-                </li>
-
-                <li>
-                    <a href="#proyectos" class="nav-link">Proyectos</a>
-                </li>
-
-                <li>
-                    <a href="#certificaciones" class="nav-link">
-                        Certificaciones
+                <div class="sidebar-bottom">
+                    <p class="sidebar-status"><svg class="nav-icon" aria-hidden="true"><use href="#nav-check"></use></svg><span>Abierto a oportunidades</span></p>
+                    <a href="https://github.com/AlejandroSystems" class="sidebar-github-btn" target="_blank" rel="noopener noreferrer">
+                        <svg class="nav-icon" aria-hidden="true"><use href="#nav-github"></use></svg>
+                        Explorar GitHub
                     </a>
-                </li>
-
-                <li>
-                    <a href="#contacto" class="nav-link nav-contact">
-                        Contacto
-                    </a>
-                </li>
-            </ul>
-
+                    <p class="sidebar-copyright">© <span class="sidebar-year">2026</span> · Alejandro Zúñiga</p>
+                </div>
+            </div>
         </nav>
     </header>
 
-
     <main id="contenido">
-
         <!-- =========================
              HERO
         ========================== -->
-        <section class="hero section">
-
+        <section class="hero section" id="inicio">
             <div class="container hero-grid">
-
                 <div class="hero-content reveal">
-
-                    <span class="eyebrow">
-                        PORTAFOLIO PROFESIONAL
-                    </span>
-
-                    <p class="hero-greeting">
-                        Hola, soy
-                    </p>
-
-                    <h1>
-                        Alejandro
-                        <span>Zúñiga</span>
-                    </h1>
-
-                    <h2>
-                        Estudiante de Ingeniería de Sistemas
-                    </h2>
-
+                    <span class="eyebrow">PORTAFOLIO PROFESIONAL</span>
+                    <p class="hero-greeting">Hola, soy</p>
+                    <h1>Alejandro <span>Zúñiga</span></h1>
+                    <h2>Automatización de procesos · Soporte TI · Visualización de datos</h2>
+                    <p class="hero-academic">Estudiante de Ingeniería de Sistemas · Universidad Autónoma del Perú</p>
                     <p class="hero-description">
-                        Experiencia en soporte tecnológico, coordinación operativa,
-                        automatización con Python, análisis de datos con Power BI
-                        y administración de sistemas GPS y CCTV.
+                        Combino la coordinación de seguridad y vigilancia con soluciones prácticas
+                        de automatización en Python, Excel y Power BI, aplicadas a necesidades
+                        operativas reales de mi trabajo actual.
                     </p>
-
                     <div class="hero-tags">
                         <span>Python</span>
                         <span>Automatización</span>
-                        <span>Datos</span>
+                        <span>Modelado de datos</span>
                         <span>Soporte TI</span>
                         <span>Power BI</span>
                     </div>
-
                     <div class="hero-buttons">
-
-                        <a
-                            href="#proyectos"
-                            class="btn btn-primary"
-                        >
-                            Ver proyectos
-                        </a>
-
-                        <a
-                            href="assets/CV_Alejandro_Zuniga_Publico.pdf"
-                            class="btn btn-cv"
-                            download="CV_Alejandro_Zuniga_2026.pdf"
-                            type="application/pdf"
-                            aria-label="Descargar currículum público de Alejandro Zúñiga en PDF"
-                        >
+                        <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+                        <a href="assets/CV_Alejandro_Zuniga_Publico.pdf" class="btn btn-cv" download="CV_Alejandro_Zuniga_2026.pdf" type="application/pdf" aria-label="Descargar currículum público de Alejandro Zúñiga en PDF">
                             <span aria-hidden="true">↓</span> Descargar CV
                         </a>
-
-
-                        <a
-                            href="https://github.com/AlejandroSystems"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-secondary"
-                        >
-                            GitHub
-                        </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/alejandrosist06/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-linkedin"
-                            aria-label="Visitar mi perfil profesional de LinkedIn (se abre en una nueva pestaña)"
-                        >
-                            LinkedIn ↗
-                        </a>
-
+                        <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+                        <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin" aria-label="Visitar mi perfil profesional de LinkedIn (se abre en una nueva pestaña)">LinkedIn ↗</a>
                     </div>
-
                 </div>
 
-
-
-<!-- Foto incorporada al repositorio: imagen accesible tanto local como en Azure. -->
-<aside class="hero-card reveal" aria-label="Información profesional y contacto">
-    <div class="profile-card">
-        <div class="profile-card-head">
-            <div class="profile-photo-wrap">
-                <img
-                    src="assets/alejandro-perfil.jpg"
-                    class="profile-photo"
-                    alt="Fotografía profesional de Alejandro Zúñiga"
-                    width="302"
-                    height="346"
-                    fetchpriority="high"
-                    decoding="async"
-                >
+                <aside class="hero-card reveal" aria-label="Información de contacto profesional">
+                    <div class="profile-card">
+                        <div class="profile-card-head">
+                            <div class="profile-photo-wrap">
+                                <img src="assets/alejandro-perfil.jpg" class="profile-photo" alt="Fotografía profesional de Alejandro Zúñiga" width="302" height="346" fetchpriority="high" decoding="async">
+                            </div>
+                            <div class="profile-identity">
+                                <span class="profile-label">CONTACTO PROFESIONAL</span>
+                                <h3>Datos de contacto</h3>
+                                <p>Ingeniería de Sistemas · Seguridad electrónica</p>
+                                <span class="profile-status"><span aria-hidden="true">●</span> Abierto a nuevas oportunidades</span>
+                            </div>
+                        </div>
+                        <dl class="profile-meta">
+                            <div><dt>Correo</dt><dd><a href="mailto:azunigamsist@gmail.com">azunigamsist@gmail.com</a></dd></div>
+                            <div><dt>Celular</dt><dd><a href="tel:+51991852642">+51 991 852 642</a></dd></div>
+                            <div><dt>Ubicación</dt><dd>Lurín, Lima, Perú</dd></div>
+                            <div><dt>Licencia</dt><dd>Clase B, categoría II-C (moto)</dd></div>
+                        </dl>
+                        <div class="profile-actions">
+                            <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <div class="profile-identity">
-                <span class="profile-label">PERFIL PROFESIONAL</span>
-                <h3>Alejandro Zúñiga</h3>
-                <p>Ingeniería de Sistemas</p>
-                <span class="profile-status"><span aria-hidden="true">●</span> Disponibilidad inmediata</span>
-            </div>
-        </div>
-        <dl class="profile-meta">
-            <div>
-                <dt>Celular</dt>
-                <dd><a href="tel:+51991852642">+51 991 852 642</a></dd>
-            </div>
-            <div>
-                <dt>Ubicación</dt>
-                <dd>Lurín, Lima, Perú</dd>
-            </div>
-            <div>
-                <dt>Inglés</dt>
-                <dd>Básico III</dd>
-            </div>
-        </dl>
-        <div class="profile-actions">
-            <a href="mailto:azunigamsist@gmail.com" aria-label="Enviar correo a Alejandro">Correo ↗</a>
-            <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer" aria-label="Ver LinkedIn de Alejandro (nueva pestaña)">LinkedIn ↗</a>
-        </div>
-        <p class="profile-terminal" aria-hidden="true"><span>›</span> soporte • automatización • datos <span class="terminal-cursor-inline">▌</span></p>
-    </div>
-</aside>
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             INDICADORES
-        ========================== -->
-        <section class="stats">
-
-            <div class="container stats-grid">
-
-                <article class="stat-card reveal">
-                    <strong>+2</strong>
-                    <span>Años en Centro de Control</span>
-                </article>
-
-                <article class="stat-card reveal">
-                    <strong>400+</strong>
-                    <span>Cámaras monitoreadas</span>
-                </article>
-
-                <article class="stat-card reveal">
-                    <strong>80%</strong>
-                    <span>Reducción de tiempos mediante automatización</span>
-                </article>
-
-                <article class="stat-card reveal">
-                    <strong>VII</strong>
-                    <span>Ciclo de Ingeniería de Sistemas</span>
-                </article>
-
-            </div>
-
         </section>
 
 
         <!-- =========================
              SOBRE MÍ
         ========================== -->
-        <section
-            class="section about"
-            id="sobre-mi"
-        >
-
+        <section class="section about" id="sobre-mi">
             <div class="container">
-
                 <div class="section-heading reveal">
                     <span class="section-number">01.</span>
                     <div>
@@ -268,556 +161,206 @@
                         <h2>Sobre mí</h2>
                     </div>
                 </div>
-
-
                 <div class="about-grid">
-
                     <div class="about-text reveal">
-
-                        <p>
-                            Soy estudiante de VII ciclo de Ingeniería de Sistemas
-                            y licenciado de las Fuerzas Armadas. Cuento con experiencia
-                            en soporte técnico, coordinación operativa, telemetría,
-                            seguridad electrónica y sistemas GPS y CCTV.
-                        </p>
-
-                        <p>
-                            He implementado automatizaciones con Python,
-                            reportes en Power BI y Excel con DAX y soluciones
-                            para el seguimiento de incidencias, orientadas
-                            a resolver necesidades operativas reales.
-                        </p>
-
-                        <p>
-                            Busco aportar en áreas de soporte TI, automatización
-                            y análisis de datos. Tengo disponibilidad laboral
-                            inmediata e inglés básico III cursado en la
-                            Universidad Autónoma del Perú.
-                        </p>
-
+                        <p>Soy estudiante de Ingeniería de Sistemas en la Universidad Autónoma del Perú y actualmente me desempeño como <strong>Operador de Centro de Control en la Línea 1 del Metro de Lima</strong>, a través de Securitas. Cuento con experiencia en coordinación de seguridad y vigilancia, atención de incidencias y soporte a sistemas de seguridad electrónica.</p>
+                        <p>Mi interés por la tecnología me ha llevado a desarrollar soluciones prácticas de <strong>automatización con Python</strong>, trabajar con Excel y aplicar Power BI para el <strong>modelado de datos, la creación de medidas DAX y la visualización de indicadores operativos</strong> relacionados con mi puesto actual.</p>
+                        <p>Me desenvuelvo en entornos exigentes, donde son fundamentales el análisis, la resolución de problemas, la comunicación efectiva y el trabajo bajo presión. Soy licenciado de las Fuerzas Armadas y valoro la disciplina, el aprendizaje continuo y la mejora de procesos.</p>
                     </div>
-
-
                     <div class="about-focus reveal">
-
                         <h3>Áreas de enfoque</h3>
-
                         <div class="focus-list">
-
-                            <div class="focus-item">
-                                <span>01</span>
-                                <div>
-                                    <h4>Soporte tecnológico</h4>
-                                    <p>
-                                        Diagnóstico de incidencias y
-                                        atención a usuarios.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="focus-item">
-                                <span>02</span>
-                                <div>
-                                    <h4>Automatización</h4>
-                                    <p>
-                                        Optimización de procesos mediante
-                                        Python, Excel e IA.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="focus-item">
-                                <span>03</span>
-                                <div>
-                                    <h4>Análisis de datos</h4>
-                                    <p>
-                                        Procesamiento, reportes y
-                                        visualización de información.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="focus-item">
-                                <span>04</span>
-                                <div>
-                                    <h4>Sistemas e IoT</h4>
-                                    <p>
-                                        GPS, CCTV, telemetría y
-                                        dispositivos electrónicos.
-                                    </p>
-                                </div>
-                            </div>
-
+                            <div class="focus-item"><span>01</span><div><h4>Soporte tecnológico</h4><p>Diagnóstico de incidencias y atención a usuarios.</p></div></div>
+                            <div class="focus-item"><span>02</span><div><h4>Automatización</h4><p>Optimización de procesos mediante Python, Excel e IA.</p></div></div>
+                            <div class="focus-item"><span>03</span><div><h4>Modelado y visualización</h4><p>Preparación de datos, medidas DAX y reportes con Power BI.</p></div></div>
+                            <div class="focus-item"><span>04</span><div><h4>Sistemas e IoT</h4><p>GPS, CCTV, telemetría y dispositivos electrónicos.</p></div></div>
                         </div>
-
+                        <div class="strengths-block">
+                            <h4>Fortalezas profesionales</h4>
+                            <ul class="strengths-list" aria-label="Fortalezas profesionales">
+                                <li>Resolución de problemas</li>
+                                <li>Trabajo bajo presión</li>
+                                <li>Adaptabilidad</li>
+                                <li>Trabajo en equipo</li>
+                            </ul>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
         </section>
-
 
         <!-- =========================
              EXPERIENCIA
         ========================== -->
-        <section
-            class="section experience"
-            id="experiencia"
-        >
-
+        <section class="section experience" id="experiencia">
             <div class="container">
-
                 <div class="section-heading reveal">
                     <span class="section-number">02.</span>
-
                     <div>
-                        <span class="eyebrow">
-                            TRAYECTORIA
-                        </span>
-
-                        <h2>
-                            Experiencia profesional
-                        </h2>
+                        <span class="eyebrow">TRAYECTORIA</span>
+                        <h2>Experiencia profesional</h2>
                     </div>
                 </div>
-
-
                 <div class="timeline">
-
                     <!-- SECURITAS -->
                     <article class="timeline-item reveal">
-
                         <div class="timeline-marker"></div>
-
                         <div class="experience-card">
-
                             <div class="experience-header">
-
                                 <div>
-                                    <span class="experience-date">
-                                        JUN 2024 — SET 2026
-                                    </span>
-
-                                    <h3>
-                                        Operador de Centro de Control
-                                    </h3>
-
-                                    <p class="company">
-                                        SECURITAS SAC · Línea 1 Metro de Lima
-                                    </p>
+                                    <span class="experience-date">JUN 2024 — ACTUALIDAD</span>
+                                    <h3>Operador de Centro de Control</h3>
+                                    <p class="company">SECURITAS SAC · Línea 1 Metro de Lima</p>
                                 </div>
-
-                                <span class="experience-duration">
-                                    Jun 2024 – Set 2026
-                                </span>
-
+                                <span class="experience-duration">Jun 2024 – Actualidad</span>
                             </div>
-
-
                             <ul class="experience-list">
-
-                                <li>
-                                    Monitoreo y control de más de
-                                    400 cámaras de seguridad mediante
-                                    Avigilon, Axis y HikVision.
-                                </li>
-
-                                <li>
-                                    Gestión de sensores, alarmas,
-                                    sistemas de acceso y seguimiento
-                                    de incidencias operativas.
-                                </li>
-
-                                <li>
-                                    Elaboración de informes y presentaciones
-                                    de incidencias críticas para Seguridad Patrimonial.
-                                </li>
-
-                                <li>
-                                    Coordinación de incidencias, registro de
-                                    asistencia y soporte documental operativo.
-                                </li>
-
+                                <li>Monitoreo de sistemas de videovigilancia y gestión de incidencias en un entorno de operación continua.</li>
+                                <li>Gestión de sensores, alarmas, sistemas de acceso y seguimiento de incidencias operativas.</li>
+                                <li>Elaboración de informes y presentaciones de incidencias críticas para Seguridad Patrimonial.</li>
+                                <li>Coordinación de incidencias, registro de asistencia y soporte documental operativo.</li>
                             </ul>
-
-
                             <div class="achievement">
-
                                 <span>LOGRO</span>
-
-                                <p>
-                                    Capacitación del equipo en herramientas de IA,
-                                    con reducción reportada del 80 % en tiempos
-                                    de gestión de datos. Desarrollo de un sistema
-                                    Python para generar líneas de tiempo en
-                                    PowerPoint (reducción reportada del 50 %)
-                                    y de un tablero de supervisión en Power BI,
-                                    Excel y DAX.
-                                </p>
-
+                                <p>Capacitación del equipo en herramientas de IA, con reducción reportada del 80 % en tiempos de gestión de datos. Desarrollo de un sistema Python para generar líneas de tiempo en PowerPoint (reducción reportada del 50 %) y de un tablero de supervisión en Power BI, Excel y DAX.</p>
                             </div>
-
                         </div>
-
                     </article>
-
 
                     <!-- ANKA -->
                     <article class="timeline-item reveal">
-
                         <div class="timeline-marker"></div>
-
                         <div class="experience-card">
-
                             <div class="experience-header">
-
                                 <div>
-                                    <span class="experience-date">
-                                        OCT 2022 — MAY 2024
-                                    </span>
-
-                                    <h3>
-                                        Asistente de Sistemas GPS
-                                    </h3>
-
-                                    <p class="company">
-                                        ANKA Perú GPS
-                                    </p>
+                                    <span class="experience-date">OCT 2022 — MAY 2024</span>
+                                    <h3>Asistente de Sistemas GPS</h3>
+                                    <p class="company">ANKA Perú GPS</p>
                                 </div>
-
-                                <span class="experience-duration">
-                                    1 año 7 meses
-                                </span>
-
+                                <span class="experience-duration">1 año 7 meses</span>
                             </div>
-
-
                             <ul class="experience-list">
-
-                                <li>
-                                    Configuración de GPS Server y
-                                    Wialon IPS.
-                                </li>
-
-                                <li>
-                                    Administración de usuarios,
-                                    vehículos, geocercas y dispositivos GPS.
-                                </li>
-
-                                <li>
-                                    Soporte técnico, mantenimiento de
-                                    dispositivos, tarjetas electrónicas,
-                                    GPS y NVR.
-                                </li>
-
-                                <li>
-                                    Elaboración de informes mensuales
-                                    de control y auditoría.
-                                </li>
-
+                                <li>Configuración de GPS Server y Wialon IPS.</li>
+                                <li>Administración de usuarios, vehículos, geocercas y dispositivos GPS.</li>
+                                <li>Soporte técnico, mantenimiento de dispositivos GPS, cámaras y equipos de seguridad electrónica.</li>
+                                <li>Participación en un proyecto de implementación de seguridad electrónica para el sector de transporte de valores, apoyando en la instalación de tarjetas electrónicas y cámaras de seguridad, así como en la configuración de dispositivos GPS.</li>
+                                <li>Elaboración de informes mensuales de control y auditoría.</li>
                             </ul>
-
-
                             <div class="achievement">
-
                                 <span>LOGRO</span>
-
-                                <p>
-                                    Creación de formularios en Google Forms
-                                    vinculados a Excel, con una reducción
-                                    reportada de aproximadamente 50 % del
-                                    tiempo de registro comercial.
-                                </p>
-
+                                <p>Creación de formularios en Google Forms vinculados a Excel, con una reducción reportada de aproximadamente 50 % del tiempo de registro comercial.</p>
                             </div>
-
                         </div>
-
                     </article>
-
                 </div>
-
             </div>
-
         </section>
-
 
         <!-- =========================
              TECNOLOGÍAS
         ========================== -->
-        <section
-            class="section skills"
-            id="habilidades"
-        >
-
+        <section class="section skills" id="habilidades">
             <div class="container">
-
                 <div class="section-heading reveal">
                     <span class="section-number">03.</span>
-
-                    <div>
-                        <span class="eyebrow">
-                            STACK
-                        </span>
-
-                        <h2>
-                            Tecnologías y habilidades
-                        </h2>
-                    </div>
+                    <div><span class="eyebrow">STACK</span><h2>Tecnologías y habilidades</h2></div>
                 </div>
-
-
                 <div class="skills-grid">
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">01</span>
-                        <h3>Python</h3>
-                        <p>
-                            Automatización, análisis de datos,
-                            IA y desarrollo práctico.
-                        </p>
-                    </article>
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">02</span>
-                        <h3>SQL / Azure SQL</h3>
-                        <p>
-                            Gestión y prácticas con bases de datos
-                            relacionales y servicios cloud.
-                        </p>
-                    </article>
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">03</span>
-                        <h3>Excel Avanzado</h3>
-                        <p>
-                            Automatización, VBA, reportes y
-                            gestión de información.
-                        </p>
-                    </article>
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">04</span>
-                        <h3>Java</h3>
-                        <p>
-                            Programación orientada a objetos
-                            y fundamentos de desarrollo.
-                        </p>
-                    </article>
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">05</span>
-                        <h3>GPS / IoT</h3>
-                        <p>
-                            Wialon, GPS Server, Teltonika,
-                            Queclink y telemetría.
-                        </p>
-                    </article>
-
-                    <article class="skill-card reveal">
-                        <span class="skill-number">06</span>
-                        <h3>Git & GitHub</h3>
-                        <p>
-                            Control de versiones y documentación
-                            de proyectos.
-                        </p>
-                    </article>
-
-
-<article class="skill-card reveal">
-    <span class="skill-number">07</span>
-    <h3>Power BI / DAX</h3>
-    <p>
-        Tableros, indicadores operativos, modelado
-        de datos y análisis con Excel y Power BI.
-    </p>
-</article>
-
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">Py</span><span class="skill-number">01 · DESARROLLO</span><h3>Python</h3><p>Scripts de automatización, procesamiento de archivos y soluciones prácticas.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">SQL</span><span class="skill-number">02 · BASES DE DATOS</span><h3>SQL / Azure SQL</h3><p>Consultas, tablas y prácticas con bases de datos relacionales en la nube.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">XL</span><span class="skill-number">03 · OFIMÁTICA</span><h3>Excel intermedio</h3><p>Tablas dinámicas, Power Query, fórmulas y elaboración de reportes.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">Jv</span><span class="skill-number">04 · DESARROLLO</span><h3>Java</h3><p>Fundamentos de programación orientada a objetos y desarrollo académico.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">IoT</span><span class="skill-number">05 · SISTEMAS</span><h3>GPS / IoT / CCTV</h3><p>Wialon, GPS Server, telemetría y soporte de dispositivos electrónicos.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">Git</span><span class="skill-number">06 · VERSIONADO</span><h3>Git y GitHub</h3><p>Control de cambios, repositorios y despliegue de proyectos web.</p></article>
+                    <article class="skill-card reveal"><span class="skill-icon" aria-hidden="true">BI</span><span class="skill-number">07 · REPORTES</span><h3>Power BI / DAX</h3><p>Preparación y modelado de datos, creación de medidas DAX y visualizaciones para seguimiento operativo.</p></article>
                 </div>
-
             </div>
-
         </section>
-
 
         <!-- =========================
              PROYECTOS
         ========================== -->
-        <section
-            class="section projects"
-            id="proyectos"
-        >
-
+        <section class="section projects" id="proyectos">
             <div class="container">
-
                 <div class="section-heading reveal">
                     <span class="section-number">04.</span>
-
-                    <div>
-                        <span class="eyebrow">
-                            DESARROLLO
-                        </span>
-
-                        <h2>
-                            Proyectos destacados
-                        </h2>
-                    </div>
+                    <div><span class="eyebrow">DESARROLLO</span><h2>Proyectos destacados</h2></div>
                 </div>
-
-
                 <div class="projects-grid">
-
-                    <!-- Proyecto 1 -->
-                    <article class="project-card project-featured reveal">
-
-                        <div class="project-content">
-
-                            <span class="project-type">
-                                DATA · IA
-                            </span>
-
-                            <h3>
-                                Análisis y pronóstico de ventas
-                            </h3>
-
-                            <p>
-                                Prototipo orientado al análisis y
-                                predicción de ventas mediante Python,
-                                procesamiento de información y
-                                herramientas cloud.
-                            </p>
-
-                            <div class="project-technologies">
-                                <span>Python</span>
-                                <span>Google Colab</span>
-                                <span>GCS</span>
-                                <span>Streamlit</span>
-                            </div>
-
-                            <a
-                                href="https://github.com/AlejandroSystems"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-link"
-                            >
-                                Explorar GitHub →
-                            </a>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Proyecto 2 -->
+                    <!-- Proyecto de desarrollo web: misma jerarquía visual que los demás -->
                     <article class="project-card reveal">
-
-                        <div class="project-content">
-
-                            <span class="project-type">
-                                AUTOMATIZACIÓN
-                            </span>
-
-                            <h3>
-                                Control de activos
-                            </h3>
-
-                            <p>
-                                Sistema CRUD desarrollado con VBA y
-                                Excel para gestionar el control de
-                                llaves dentro de un centro de control.
-                            </p>
-
-                            <div class="project-technologies">
-                                <span>Excel</span>
-                                <span>VBA</span>
-                                <span>CRUD</span>
-                            </div>
-
-                            <a
-                                href="https://github.com/AlejandroSystems"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-link"
-                            >
-                                Explorar GitHub →
-                            </a>
-
+                        <div class="project-visual project-visual-web" aria-hidden="true">
+                            <span class="project-visual-label">DESARROLLO WEB · PROTOTIPO</span>
+                            <div class="project-visual-flow"><span>HTML</span><b>+</b><span>CSS</span><b>+</b><span>JS</span></div>
                         </div>
-
+                        <div class="project-content">
+                            <span class="project-type">DESARROLLO WEB · MAQUETA FUNCIONAL</span>
+                            <h3>MARZZELLI Perú Cueros</h3>
+                            <p>Maqueta frontend de nueve páginas para presentar colecciones y productos de cuero. Incluye navegación, catálogo por categorías y un generador local de referencias de imágenes con Python. Publicada en GitHub Pages.</p>
+                            <p class="project-disclaimer">Demostración sin operaciones de compra ni pagos en línea.</p>
+                            <div class="project-technologies"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python</span><span>GitHub Pages</span></div>
+                            <div class="project-actions">
+                                <a class="project-link" href="https://alejandrosystems.github.io/MARZZELLI/" target="_blank" rel="noopener noreferrer" aria-label="Ver demostración web de MARZZELLI">Ver demostración ↗</a>
+                                <a class="project-link secondary" href="https://github.com/AlejandroSystems/MARZZELLI" target="_blank" rel="noopener noreferrer" aria-label="Ver código fuente de MARZZELLI en GitHub">Ver código en GitHub ↗</a>
+                            </div>
+                        </div>
                     </article>
 
-
-                    <!-- Proyecto 3 -->
                     <article class="project-card reveal">
-
-                        <div class="project-content">
-
-                            <span class="project-type">
-                                PYTHON
-                            </span>
-
-                            <h3>
-                                Automatización de líneas de tiempo
-                            </h3>
-
-                            <p>
-                                Sistema desarrollado en Python para generar
-                                líneas de tiempo en PowerPoint y reducir
-                                tareas repetitivas; según el CV, el proceso
-                                mejoró aproximadamente un 50 %.
-                            </p>
-
-                            <div class="project-technologies">
-                                <span>Python</span>
-                                <span>Automatización</span>
-                                <span>PowerPoint</span>
-                            </div>
-
+                        <div class="project-visual project-visual-data" aria-hidden="true">
+                            <span class="project-visual-label">CIENCIA DE DATOS · PROTOTIPO</span>
+                            <div class="project-visual-flow"><span>Datos</span><b>→</b><span>Modelo</span><b>→</b><span>Reporte</span></div>
                         </div>
-
+                        <div class="project-content">
+                            <span class="project-type">DATOS · IA</span>
+                            <h3>Análisis y pronóstico de ventas</h3>
+                            <p>Prototipo orientado al procesamiento de información y a la estimación de ventas mediante Python y herramientas cloud.</p>
+                            <div class="project-technologies"><span>Python</span><span>Google Colab</span><span>GCS</span><span>Streamlit</span></div>
+                            <div class="project-actions"><a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" class="project-link">Consultar mis repositorios ↗</a></div>
+                        </div>
                     </article>
 
+                    <article class="project-card reveal">
+                        <div class="project-visual project-visual-automation" aria-hidden="true">
+                            <span class="project-visual-label">AUTOMATIZACIÓN · REGISTROS</span>
+                            <div class="project-visual-flow"><span>Excel</span><b>+</b><span>VBA</span><b>→</b><span>CRUD</span></div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-type">AUTOMATIZACIÓN</span>
+                            <h3>Control de activos</h3>
+                            <p>Herramienta CRUD en Excel y VBA para el registro, consulta y seguimiento de llaves en un centro de control.</p>
+                            <div class="project-technologies"><span>Excel</span><span>VBA</span><span>CRUD</span></div>
+                            <div class="project-actions"><a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" class="project-link">Consultar mis repositorios ↗</a></div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-visual project-visual-timeline" aria-hidden="true">
+                            <span class="project-visual-label">PYTHON · GENERACIÓN DE INFORMES</span>
+                            <div class="project-visual-flow"><span>Datos</span><b>→</b><span>Python</span><b>→</b><span>PowerPoint</span></div>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-type">PYTHON · AUTOMATIZACIÓN</span>
+                            <h3>Automatización de líneas de tiempo</h3>
+                            <p>Desarrollo en Python para generar presentaciones de líneas de tiempo en PowerPoint y reducir tareas manuales repetitivas. El resultado reportado fue una mejora aproximada del 50 % en tiempos del proceso.</p>
+                            <div class="project-technologies"><span>Python</span><span>Automatización</span><span>PowerPoint</span></div>
+                        </div>
+                    </article>
                 </div>
-
             </div>
-
         </section>
-
 
         <!-- =========================
              CERTIFICACIONES
         ========================== -->
-        <section
-            class="section certifications"
-            id="certificaciones"
-        >
-
+        <section class="section certifications" id="certificaciones">
             <div class="container">
-
                 <div class="section-heading reveal">
                     <span class="section-number">05.</span>
-
-                    <div>
-                        <span class="eyebrow">
-                            APRENDIZAJE CONTINUO
-                        </span>
-
-                        <h2>
-                            Credenciales y formación
-                        </h2>
-                    </div>
+                    <div><span class="eyebrow">APRENDIZAJE CONTINUO</span><h2>Credenciales y formación</h2></div>
                 </div>
-
-
-                <p class="certifications-intro reveal">
-                    Consulta las insignias emitidas a través de Credly y los logros
-                    de formación registrados en Microsoft Learn. Las insignias
-                    formativas y las rutas completadas no implican haber aprobado
-                    un examen de certificación profesional.
-                </p>
-
+                <p class="certifications-intro reveal">Consulta mis insignias.</p>
+                
                 <h3 class="credentials-heading reveal">Insignias digitales · Credly</h3>
                 <div class="certifications-grid" aria-label="Insignias digitales de AWS y Cisco">
                     <article class="cert-card reveal">
@@ -829,9 +372,8 @@
                         <h4>AWS Academy Graduate – Cloud Foundations</h4>
                         <p>Amazon Web Services Training and Certification</p>
                         <p class="cert-type">Insignia de formación</p>
-                        <a class="cert-link" href="https://www.credly.com/badges/ae82159f-1134-4b99-a077-3fce568c61b1/public_url" target="_blank" rel="noopener noreferrer" aria-label="Abrir insignia de AWS Academy Cloud Foundations en Credly (nueva pestaña)">Consultar insignia ↗</a>
+                        <a class="cert-link" href="https://www.credly.com/badges/ae82159f-1134-4b99-a077-3fce568c61b1/public_url" target="_blank" rel="noopener noreferrer">Consultar insignia ↗</a>
                     </article>
-
                     <article class="cert-card reveal">
                         <div class="cert-topline">
                             <img class="cert-badge" src="assets/cisco-cybersecurity.png" alt="Insignia Cisco Introduction to Cybersecurity" width="90" height="90" loading="lazy">
@@ -841,9 +383,8 @@
                         <h4>Introduction to Cybersecurity</h4>
                         <p>Cisco Networking Academy</p>
                         <p class="cert-type">Insignia de formación</p>
-                        <a class="cert-link" href="https://www.credly.com/badges/d36a84b8-0ed1-4763-bf49-111c2ea25c8f/public_url" target="_blank" rel="noopener noreferrer" aria-label="Abrir insignia de Introduction to Cybersecurity en Credly (nueva pestaña)">Consultar insignia ↗</a>
+                        <a class="cert-link" href="https://www.credly.com/badges/d36a84b8-0ed1-4763-bf49-111c2ea25c8f/public_url" target="_blank" rel="noopener noreferrer">Consultar insignia ↗</a>
                     </article>
-
                     <article class="cert-card reveal">
                         <div class="cert-topline">
                             <img class="cert-badge" src="assets/cisco-networking.png" alt="Insignia Cisco Networking Basics" width="90" height="90" loading="lazy">
@@ -853,9 +394,8 @@
                         <h4>Networking Basics</h4>
                         <p>Cisco Networking Academy</p>
                         <p class="cert-type">Insignia de formación</p>
-                        <a class="cert-link" href="https://www.credly.com/badges/8eafc52e-d7f0-4414-bc1e-a385cf0512a5/public_url" target="_blank" rel="noopener noreferrer" aria-label="Abrir insignia de Networking Basics en Credly (nueva pestaña)">Consultar insignia ↗</a>
+                        <a class="cert-link" href="https://www.credly.com/badges/8eafc52e-d7f0-4414-bc1e-a385cf0512a5/public_url" target="_blank" rel="noopener noreferrer">Consultar insignia ↗</a>
                     </article>
-
                     <article class="cert-card reveal">
                         <div class="cert-topline">
                             <img class="cert-badge" src="assets/cisco-python.png" alt="Insignia Cisco Python Essentials 1" width="90" height="90" loading="lazy">
@@ -865,12 +405,12 @@
                         <h4>Python Essentials 1</h4>
                         <p>Cisco Networking Academy</p>
                         <p class="cert-type">Insignia de formación</p>
-                        <a class="cert-link" href="https://www.credly.com/badges/63067f36-5cd4-42c5-a597-09bf4a7a813d/public_url" target="_blank" rel="noopener noreferrer" aria-label="Abrir insignia de Python Essentials 1 en Credly (nueva pestaña)">Consultar insignia ↗</a>
+                        <a class="cert-link" href="https://www.credly.com/badges/63067f36-5cd4-42c5-a597-09bf4a7a813d/public_url" target="_blank" rel="noopener noreferrer">Consultar insignia ↗</a>
                     </article>
                 </div>
 
                 <h3 class="credentials-heading credentials-heading-spaced reveal">Rutas completadas · Microsoft Learn</h3>
-                <div class="certifications-grid" aria-label="Logros formativos de Microsoft Learn">
+                <div class="certifications-grid">
                     <article class="cert-card reveal">
                         <div class="cert-topline">
                             <span class="cert-provider cert-provider-microsoft" aria-hidden="true">MS LEARN</span>
@@ -879,9 +419,8 @@
                         <h4>Descripción de la administración y la gobernanza de Azure</h4>
                         <p>Microsoft Learn · Introducción a la infraestructura en la nube</p>
                         <p class="cert-type">Ruta de aprendizaje completada</p>
-                        <a class="cert-link" href="https://learn.microsoft.com/api/achievements/share/es-mx/ALEJANDROANTONIOZUIGAMOZOMBITE-7471/HZEMKXY8?sharingId=14862F043F1F061D" target="_blank" rel="noopener noreferrer" aria-label="Consultar logro de administración y gobernanza de Azure en Microsoft Learn (nueva pestaña)">Consultar logro ↗</a>
+                        <a class="cert-link" href="https://learn.microsoft.com/api/achievements/share/es-mx/ALEJANDROANTONIOZUIGAMOZOMBITE-7471/HZEMKXY8?sharingId=14862F043F1F061D" target="_blank" rel="noopener noreferrer">Consultar logro ↗</a>
                     </article>
-
                     <article class="cert-card reveal">
                         <div class="cert-topline">
                             <span class="cert-provider cert-provider-microsoft" aria-hidden="true">MS LEARN</span>
@@ -890,44 +429,25 @@
                         <h4>Descripción de los conceptos de la nube</h4>
                         <p>Microsoft Learn · Introducción a la infraestructura en la nube</p>
                         <p class="cert-type">Ruta de aprendizaje completada</p>
-                        <a class="cert-link" href="https://learn.microsoft.com/api/achievements/share/es-mx/ALEJANDROANTONIOZUIGAMOZOMBITE-7471/VTLEACWM?sharingId=14862F043F1F061D" target="_blank" rel="noopener noreferrer" aria-label="Consultar logro de conceptos de nube en Microsoft Learn (nueva pestaña)">Consultar logro ↗</a>
+                        <a class="cert-link" href="https://learn.microsoft.com/api/achievements/share/es-mx/ALEJANDROANTONIOZUIGAMOZOMBITE-7471/VTLEACWM?sharingId=14862F043F1F061D" target="_blank" rel="noopener noreferrer">Consultar logro ↗</a>
                     </article>
                 </div>
-
-                <p class="credentials-other reveal">Formación adicional: Excel Avanzado · Fundación Telefónica (2024). Constancia pendiente de enlace público.</p>
-
+                <p class="credentials-other reveal">Formación complementaria en herramientas de ofimática y actualización continua.</p>
             </div>
-
         </section>
-
 
         <!-- =========================
              FORMACIÓN
         ========================== -->
         <section class="section education">
-
             <div class="container">
-
                 <div class="education-card reveal">
-
                     <div>
-                        <span class="eyebrow">
-                            FORMACIÓN ACADÉMICA
-                        </span>
-
-                        <h2>
-                            Ingeniería de Sistemas
-                        </h2>
-
-                        <p>
-                            Universidad Autónoma del Perú
-                        </p>
-
-                        <span class="education-status">
-                            VII ciclo · En curso
-                        </span>
+                        <span class="eyebrow">FORMACIÓN ACADÉMICA</span>
+                        <h2>Ingeniería de Sistemas</h2>
+                        <p>Universidad Autónoma del Perú</p>
+                        <span class="education-status">VII ciclo · En curso</span>
                     </div>
-
                     <div class="education-side">
                         <div class="education-language">
                             <span class="education-language-label">IDIOMAS</span>
@@ -936,129 +456,50 @@
                         </div>
                         <div class="education-code" aria-hidden="true">&lt;/SYSTEMS&gt;</div>
                     </div>
-
                 </div>
-
             </div>
-
         </section>
-
 
         <!-- =========================
              CONTACTO
         ========================== -->
-        <section
-            class="section contact"
-            id="contacto"
-        >
-
+        <section class="section contact" id="contacto">
             <div class="container contact-container reveal">
-
-                <span class="eyebrow">
-                    HABLEMOS
-                </span>
-
-                <h2>
-                    ¿Tienes un proyecto o una oportunidad?
-                </h2>
-
-                <p>
-                    Estoy interesado en seguir creciendo en proyectos
-                    relacionados con sistemas, soporte tecnológico,
-                    automatización y análisis de datos.
-                </p>
-                <p class="contact-location">Lurín, Lima, Perú · <strong>Disponibilidad laboral inmediata</strong></p>
+                <span class="eyebrow">HABLEMOS</span>
+                <h2>¿Tienes un proyecto o una oportunidad?</h2>
+                <p>Estoy interesado en oportunidades de soporte TI, automatización y visualización de datos, así como en proyectos web y de sistemas.</p>
+                <p class="contact-location">Lurín, Lima, Perú · <strong>Abierto a nuevas oportunidades</strong></p>
                 <p class="contact-phone">Celular: <a href="tel:+51991852642">+51 991 852 642</a></p>
-
                 <div class="contact-buttons">
-
-                    <a
-                        href="mailto:azunigamsist@gmail.com"
-                        class="btn btn-primary"
-                    >
-                        Enviar correo
-                    </a>
-
-                    <a
-                        href="assets/CV_Alejandro_Zuniga_Publico.pdf"
-                        class="btn btn-cv"
-                        download="CV_Alejandro_Zuniga_2026.pdf"
-                        type="application/pdf"
-                        aria-label="Descargar currículum público de Alejandro Zúñiga en PDF"
-                    >
+                    <a href="mailto:azunigamsist@gmail.com?subject=Contacto%20desde%20tu%20portafolio" class="btn btn-primary">Contactar por correo</a>
+                    <a href="assets/CV_Alejandro_Zuniga_Publico.pdf" class="btn btn-cv" download="CV_Alejandro_Zuniga_2026.pdf" type="application/pdf">
                         <span aria-hidden="true">↓</span> Descargar CV
                     </a>
-
-
-                    <a
-                        href="https://github.com/AlejandroSystems"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-secondary"
-                    >
-                        Visitar GitHub
-                    </a>
-
-                    <a
-                        href="https://www.linkedin.com/in/alejandrosist06/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-linkedin"
-                        aria-label="Visitar mi perfil de LinkedIn (se abre en una nueva pestaña)"
-                    >
-                        LinkedIn ↗
-                    </a>
-
+                    <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visitar GitHub</a>
+                    <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer" class="btn btn-linkedin">LinkedIn ↗</a>
                 </div>
-
             </div>
-
         </section>
 
     </main>
-
 
     <!-- =========================
          FOOTER
     ========================== -->
     <footer class="footer">
-
         <div class="container footer-content">
-
-            <a href="#inicio" class="footer-logo">
-                &lt;AZ/&gt;
-            </a>
-
-            <p>
-                Diseñado y desarrollado por
-                <strong>Alejandro Zúñiga</strong>
-            </p>
-
+            <a href="#inicio" class="footer-logo">&lt;AZ/&gt;</a>
+            <p>Diseñado y desarrollado por <strong>Alejandro Zúñiga</strong></p>
             <div class="footer-social">
-                <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer" aria-label="GitHub (nueva pestaña)">GitHub ↗</a>
-                <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (nueva pestaña)">LinkedIn ↗</a>
+                <a href="https://github.com/AlejandroSystems" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                <a href="https://www.linkedin.com/in/alejandrosist06/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             </div>
-
-            <p class="footer-year">
-                © <span id="current-year"></span>
-            </p>
-
+            <p class="footer-year">© <span id="current-year"></span></p>
         </div>
-
     </footer>
 
-
-    <!-- Botón volver arriba -->
-    <button
-        class="scroll-top"
-        id="scroll-top"
-        aria-label="Volver al inicio"
-    >
-        ↑
-    </button>
-
-
+    <button class="scroll-top" id="scroll-top" aria-label="Volver al inicio">↑</button>
     <script src="script.js"></script>
 
 </body>
-</html> 
+</html>

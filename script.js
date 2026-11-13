@@ -1,10 +1,8 @@
-/*
- * PORTAFOLIO ALEJANDRO ZÚÑIGA
- * script.js — navegación, accesibilidad y animaciones.
- * No requiere bibliotecas externas ni una etapa de compilación.
+/* PORTAFOLIO ALEJANDRO ZÚÑIGA — v2
+ * Navegación lateral en escritorio, menú móvil accesible y animaciones.
+ * No requiere librerías externas.
  */
 
-// Con JS deshabilitado el contenido debe seguir siendo visible.
 document.documentElement.classList.add("js");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,61 +12,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = [...document.querySelectorAll(".nav-link")];
     const scrollTopButton = document.getElementById("scroll-top");
     const currentYear = document.getElementById("current-year");
+    const sidebarYear = document.querySelector(".sidebar-year");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileView = window.matchMedia("(max-width: 1000px)");
     const scrollBehavior = () => reducedMotion.matches ? "auto" : "smooth";
+    const headerOffset = () => mobileView.matches ? (header?.offsetHeight ?? 70) : 0;
 
-    // 1. Menú móvil: estado accesible, cierre mediante Escape y clic externo.
     function setMenuOpen(isOpen, returnFocus = false) {
         if (!menuToggle || !navMenu) return;
-        navMenu.classList.toggle("open", isOpen);
-        menuToggle.classList.toggle("active", isOpen);
-        document.body.classList.toggle("menu-open", isOpen);
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+        const open = mobileView.matches && isOpen;
+        navMenu.classList.toggle("open", open);
+        menuToggle.classList.toggle("active", open);
+        document.body.classList.toggle("menu-open", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+        // El menú lateral cerrado no debe tener enlaces alcanzables con Tab.
+        navMenu.inert = mobileView.matches && !open;
         if (returnFocus) menuToggle.focus();
     }
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", () => {
-            setMenuOpen(!navMenu.classList.contains("open"));
-        });
-        navLinks.forEach(link => link.addEventListener("click", () => setMenuOpen(false)));
+        menuToggle.addEventListener("click", () => setMenuOpen(!navMenu.classList.contains("open")));
         document.addEventListener("keydown", event => {
-            if (event.key === "Escape" && navMenu.classList.contains("open")) {
-                setMenuOpen(false, true);
-            }
+            if (event.key === "Escape" && navMenu.classList.contains("open")) setMenuOpen(false, true);
         });
         document.addEventListener("click", event => {
             if (navMenu.classList.contains("open") &&
-                !navMenu.contains(event.target) &&
-                !menuToggle.contains(event.target)) {
+                !navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
                 setMenuOpen(false);
             }
         });
-        window.addEventListener("resize", () => {
-            if (window.innerWidth > 850 && navMenu.classList.contains("open")) {
-                setMenuOpen(false);
-            }
-        });
+        const syncMenu = () => setMenuOpen(false);
+        if (mobileView.addEventListener) mobileView.addEventListener("change", syncMenu);
+        else mobileView.addListener(syncMenu);
+        syncMenu();
     }
 
-    // 2. Menú activo según la sección que aparece en pantalla.
     const sections = navLinks.map(link => {
         const href = link.getAttribute("href");
-        if (!href || !href.startsWith("#") || href === "#") return null;
+        if (!href?.startsWith("#") || href === "#") return null;
         const element = document.getElementById(href.slice(1));
         return element ? { link, element } : null;
     }).filter(Boolean);
 
     function updateActiveNavigation() {
-        const scrollPosition = window.scrollY + (header?.offsetHeight ?? 76) + 105;
+        const mark = window.scrollY + headerOffset() + 125;
         let currentId = "inicio";
         for (const { element } of sections) {
-            if (scrollPosition >= element.getBoundingClientRect().top + window.scrollY) {
-                currentId = element.id;
-            }
+            if (mark >= element.getBoundingClientRect().top + window.scrollY) currentId = element.id;
         }
-        if (window.scrollY < 180) currentId = "inicio";
+        if (window.scrollY < 80) currentId = "inicio";
         for (const link of navLinks) {
             const isActive = link.getAttribute("href") === `#${currentId}`;
             link.classList.toggle("active", isActive);
@@ -77,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 3. Eventos de desplazamiento agrupados por fotograma.
     function updateOnScroll() {
-        header?.classList.toggle("scrolled", window.scrollY > 20);
-        scrollTopButton?.classList.toggle("visible", window.scrollY > 500);
+        header?.classList.toggle("scrolled", mobileView.matches && window.scrollY > 20);
+        scrollTopButton?.classList.toggle("visible", window.scrollY > 450);
         updateActiveNavigation();
     }
     let framePending = false;
@@ -92,14 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
             framePending = false;
         });
     }, { passive: true });
+    window.addEventListener("resize", updateOnScroll);
     updateOnScroll();
 
-    // 4. Volver arriba, respetando el ajuste de movimiento reducido.
-    scrollTopButton?.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: scrollBehavior() });
-    });
+    function goToTarget(target, updateHistory = true) {
+        const top = target.getBoundingClientRect().top + window.scrollY - headerOffset() - 18;
+        window.scrollTo({ top: Math.max(0, top), behavior: scrollBehavior() });
+        if (updateHistory) {
+            const hash = `#${target.id}`;
+            if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+        }
+        updateActiveNavigation();
+    }
 
-    // 5. Enlaces internos: tener en cuenta el encabezado fijo.
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", event => {
             const href = anchor.getAttribute("href");
@@ -107,27 +104,36 @@ document.addEventListener("DOMContentLoaded", () => {
             const target = document.getElementById(href.slice(1));
             if (!target) return;
             event.preventDefault();
-            const top = target.getBoundingClientRect().top + window.scrollY -
-                        (header?.offsetHeight ?? 0) - 20;
-            window.scrollTo({ top: Math.max(0, top), behavior: scrollBehavior() });
-            // Conservar un enlace profundo navegable y un historial útil.
-            if (window.location.hash !== href) {
-                window.history.pushState(null, "", href);
-            }
-            // Devolver el foco al contenido cuando se cierra el menú móvil.
-            if (anchor.closest("#nav-menu") && target !== header) {
-                const hadTabindex = target.hasAttribute("tabindex");
-                if (!hadTabindex) target.setAttribute("tabindex", "-1");
+            const cameFromMenu = !!anchor.closest("#nav-menu");
+            if (cameFromMenu) setMenuOpen(false);
+            goToTarget(target);
+            // El foco ayuda a usuarios de teclado y lectores de pantalla.
+            if (cameFromMenu || anchor.classList.contains("skip-link")) {
+                const originalTabindex = target.getAttribute("tabindex");
+                target.setAttribute("tabindex", "-1");
                 target.focus({ preventScroll: true });
-                if (!hadTabindex) target.addEventListener("blur", () => {
-                    target.removeAttribute("tabindex");
+                target.addEventListener("blur", () => {
+                    if (originalTabindex === null) target.removeAttribute("tabindex");
+                    else target.setAttribute("tabindex", originalTabindex);
                 }, { once: true });
             }
         });
     });
 
-    // 6. Revelar contenido; mantenerlo visible si no hay observador o si
-    //    se ha pedido reducir el movimiento.
+    const onHistoryChange = () => {
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        const target = id ? document.getElementById(id) : document.getElementById("inicio");
+        if (target) goToTarget(target, false);
+    };
+    window.addEventListener("popstate", onHistoryChange);
+    window.addEventListener("hashchange", onHistoryChange);
+
+    scrollTopButton?.addEventListener("click", () => {
+        const first = document.getElementById("inicio");
+        if (first) goToTarget(first);
+        else window.scrollTo({ top: 0, behavior: scrollBehavior() });
+    });
+
     const revealElements = document.querySelectorAll(".reveal");
     if (reducedMotion.matches || !("IntersectionObserver" in window)) {
         revealElements.forEach(element => element.classList.add("visible"));
@@ -138,23 +144,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 entry.target.classList.add("visible");
                 currentObserver.unobserve(entry.target);
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.08, rootMargin: "0px 0px 20px 0px" });
         revealElements.forEach(element => observer.observe(element));
     }
 
-    // 7. Año actual y cambios de historial (Atrás/Adelante).
     if (currentYear) currentYear.textContent = String(new Date().getFullYear());
-    window.addEventListener("popstate", () => {
-        const id = window.location.hash.slice(1);
-        if (!id) {
-            window.scrollTo({ top: 0, behavior: scrollBehavior() });
-        } else {
-            const element = document.getElementById(id);
-            if (element) {
-                const top = element.getBoundingClientRect().top + window.scrollY -
-                            (header?.offsetHeight ?? 0) - 20;
-                window.scrollTo({ top: Math.max(0, top), behavior: scrollBehavior() });
-            }
-        }
-    });
+    if (sidebarYear) sidebarYear.textContent = String(new Date().getFullYear());
+    if (window.location.hash) {
+        // Al abrir un enlace directo, aplicar el mismo offset del header móvil.
+        window.requestAnimationFrame(() => {
+            const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+            if (target) goToTarget(target, false);
+        });
+    }
 });
